@@ -1,0 +1,16 @@
+services:
+  mongo:
+    image: mongo:5.0.3
+    ports:
+      - 27018:27017
+    container_name: blog-post
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - db:/data/db
+
+volumes:
+  db:
